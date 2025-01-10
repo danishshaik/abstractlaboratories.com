@@ -6,30 +6,127 @@
     <title>Abstract Labs</title>
     <style>
         body {
-            /* font-family: Arial, sans-serif; */
-            /* line-height: 1.6; */
-            margin: 0 auto;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: white;
+            flex-direction: column;
+        }
+        .container {
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: -10px;
+        }
+        .logo {
+            height: 30px;
+            width: auto;
+            margin-right: 10px;
+        }
+        .company-name {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            font-size: 24px;
+            font-weight: 700;
+            color: black;
+            margin: 0;
+        }
+        .nav-links {
+            margin-top: 40px;
+        }
+        .nav-links a {
+            color: black;
+            text-decoration: none;
+            margin: 0 20px;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            font-size: 14px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .nav-links a:hover {
+            opacity: 0.7;
+        }
+        .content {
+            display: none;
+            margin-top: 40px;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            font-size: 16px;
+            line-height: 1.6;
             max-width: 600px;
-            padding: 20px;
+            text-align: center;
+            padding: 0 20px;
         }
-        h1 {
-            margin-bottom: 20;
+        .content.active {
+            display: block;
         }
-        h2 {
-            margin-top: 30px;
+        .close-button {
+            position: absolute;
+            top: 40px;
+            right: 40px;
+            font-size: 24px;
+            cursor: pointer;
+            color: black;
+            text-decoration: none;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
         }
-        ul {
-            padding-left: 20px;
+        .close-button:hover {
+            opacity: 0.7;
+        }
+        .main-content {
+            transition: opacity 0.3s ease;
+        }
+        .main-content.hidden {
+            display: none;
         }
     </style>
 </head>
 <body>
-    <h1>Abstract Labs</h1>
-    <p>
-        <strong>By</strong>
-        Ash Bhat (me@ashbhat.com) & Danish Shaik (me@dshaik.com)
-    </p>
-    <p><a href="apple.com">PillCount</a></p>
-    <p><a href="apple.com">PillScanAI</a></p>
+    <div class="main-content">
+        <div class="container">
+            <img src="./logo.jpg" class="logo">
+            <h1 class="company-name">ABSTRACT LABS</h1>
+        </div>
+        <div class="nav-links">
+            <a href="#" onclick="toggleSection(event, 'about')">ABOUT</a>
+            <a href="#" onclick="toggleSection(event, 'work')">WORK</a>
+            <a href="#" onclick="toggleSection(event, 'contact')">CONTACT</a>
+        </div>
+    </div>
+    <div id="about" class="content">
+        <a href="#" class="close-button" onclick="toggleSection(event, 'about')">×</a>
+        Abstract Labs is a holding company for products designed for people.
+    </div>
+    <div id="work" class="content">
+        <a href="#" class="close-button" onclick="toggleSection(event, 'work')">×</a>
+        Abstract Labs works on products for people.
+    </div>
+    <div id="contact" class="content">
+        <a href="#" class="close-button" onclick="toggleSection(event, 'contact')">×</a>
+        You can contact the creators of Abstract Laboratories at <a href="mailto:ash@abstractlaboratories.com">ash@abstractlaboratories.com</a> or <a href="mailto:danish@abstractlaboratories.com">danish@abstractlaboratories.com</a>
+    </div>
+
+    <script>
+        function toggleSection(event, section) {
+            event.preventDefault();
+            const content = document.getElementById(section);
+            const mainContent = document.querySelector('.main-content');
+            const sections = ['about', 'work', 'contact'];
+            
+            // Hide all other sections
+            sections.forEach(s => {
+                if (s !== section) {
+                    document.getElementById(s).classList.remove('active');
+                }
+            });
+            
+            // Toggle current section
+            content.classList.toggle('active');
+            mainContent.classList.toggle('hidden');
+        }
+    </script>
 </body>
 </html>
